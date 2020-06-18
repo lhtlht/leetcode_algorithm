@@ -46,7 +46,7 @@ public class BinaryTree {
         }
     }
 
-    //层次
+    //层次 BFS
     public void levelOrder(TreeNode root) {
         if (root == null) {
             return;
