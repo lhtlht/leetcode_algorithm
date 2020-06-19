@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class BinaryTree {
     TreeNode root = null;
-    BinaryTree(int[] array, int index) {
+    public BinaryTree(int[] array, int index) {
         this.root = createBinaryTree(array,index);
     }
 
