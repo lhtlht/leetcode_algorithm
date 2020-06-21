@@ -15,37 +15,37 @@ public class Solution10 {
 
     public static boolean isMatch(String s, String p) {
         //异常情况判断
-        if (p==null) {
-            if (s==null) {
-                return true;
-            } else {
-                return false;
-            }
+        if (s==null || p==null) {
+            return false;
         }
-        if (p.length()==0) {
-            if (s.length()==0) {
-                return true;
-            } else {
-                return false;
+        boolean[][] dp = new boolean[s.length()+1][p.length()+1]; //初始化全部为false
+        dp[0][0] = true;
+        for (int i=0; i<p.length(); i++) {  //第一个for循环是初始化二维表格的第一行，以第一行为基础再将第2到n行表格填满，最后一个格子内的数据就是答案
+            if (p.charAt(i)=='*' && dp[0][i-1]) {
+                dp[0][i+1] = true;
             }
         }
 
+        for (int i=0; i<s.length(); i++) {
+            for (int j = 0; j < p.length(); j++) {
+                if (p.charAt(j) == '.' || p.charAt(j) == s.charAt(i)) {  //如果是任意元素或者是对应元素匹配
+                    dp[i + 1][j + 1] = dp[i][j];
+                }
+                if (p.charAt(j) == '*') {
+                    if (p.charAt(j - 1) != s.charAt(i) && p.charAt(j - 1) != '.') {//如果前一个元素不匹配 且不为任意元素
+                        dp[i + 1][j + 1] = dp[i + 1][j - 1];
+                    } else {
+                        dp[i + 1][j + 1] = (dp[i + 1][j] || dp[i][j + 1] || dp[i + 1][j - 1]);
+                    }
 
-        int sPos = 0;
-        for (int i=0; i<p.length(); i++) {
-            char pp = p.charAt(i);
-            if (pp=='.') {
-                
-                while (s.charAt(sPos)==p.charAt(i-1)) {
 
                 }
             }
 
 
-
-
-
         }
+
+        return dp[s.length()][p.length()];
     }
 
 
