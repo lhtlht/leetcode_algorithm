@@ -62,14 +62,30 @@ public class BackTrack {
         return ress;
     }
 
+    // 路径：board 中小于 row 的那些行都已经成功放置了皇后
+    // 选择列表：第 row 行的所有列都是放置皇后的选择
+    // 结束条件：row 超过 board 的最后一行
     public void nQueenBackTrack(List<String> bord, int row) {
         if (row == bord.size()) {
-            res.add(bord);
+            ress.add(bord);
+            
             return;
         }
+
+        for (int col=0; col<bord.size(); col++) {
+            if(!isValid(bord, row, col)) continue;
+            //做选择
+
+
+
+        }
+
+
     }
 
-
+    public boolean isValid(List<String> bord, int row, int col) {
+        return true;
+    }
 
 
 
