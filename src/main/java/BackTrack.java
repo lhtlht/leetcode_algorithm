@@ -68,7 +68,7 @@ public class BackTrack {
     public void nQueenBackTrack(List<String> bord, int row) {
         if (row == bord.size()) {
             ress.add(bord);
-            
+
             return;
         }
 
