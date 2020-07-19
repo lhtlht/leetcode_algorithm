@@ -55,8 +55,8 @@ public class Solution170 {
         List<Integer> nums = new ArrayList<Integer>();
 
         /** Initialize your data structure here. */
-        public TwoSum() {
-
+        public void TwoSum() {
+            return ;
         }
 
         /** Add the number to an internal data structure.. */
