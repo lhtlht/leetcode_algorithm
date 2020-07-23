@@ -2,14 +2,14 @@ package medium;
 
 public class Solution348 {
     class TicTacToe {
-
-        String player1;
-        String player2;
+        int n;
+        int[] rows, cols, dig;
         /** Initialize your data structure here. */
         public TicTacToe(int n) {
-            player1 = "X";
-            player2 = "O";
-            String[][] tic = new String[3][3];
+            this.n = n;
+            rows = new int[n];
+            cols = new int[n];
+            dig = new int[2];
         }
 
         /** Player {player} makes a move at ({row}, {col}).
@@ -21,6 +21,24 @@ public class Solution348 {
          1: Player 1 wins.
          2: Player 2 wins. */
         public int move(int row, int col, int player) {
+            if (player == 1) {
+                rows[row]++;
+                cols[col]++;
+                if (row == col) dig[0]++;
+                if (row + col == this.n-1) dig[1]++;
+            }
+
+            if (player == 2) {
+                rows[row]--;
+                cols[col]--;
+                if (row == col) dig[0]--;
+                if (row + col == this.n-1) dig[1]--;
+            }
+
+            if (rows[row] == this.n || cols[col]==this.n || dig[0]==this.n || dig[1] == this.n) return 1;
+            if (rows[row] == this.n*-1 || cols[col]==this.n*-1 || dig[0]==this.n*-1 || dig[1] == this.n*-1) return 2;
+            return 0;
+
 
         }
     }
