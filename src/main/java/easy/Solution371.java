@@ -16,12 +16,12 @@ public class Solution371 {
      */
 
     public int getSum(int a, int b) {
-        
+        return b == 0 ? a : getSum(a^b, (a&b)<<1);
     }
 
     public static void main(String[] args) {
         int a = 1;
-        int b = 2;
+        int b = 20;
         Solution371 s = new Solution371();
         System.out.println(s.getSum(a,b)); //3
     }
