@@ -23,7 +23,41 @@ public class Solution28 {
      */
 
     public int strStr(String haystack, String needle) {
-        return 0;
+        //暴力解法
+        if (needle.equals("")) {
+            return 0;
+        }
+        int m = haystack.length();
+        int n = needle.length();
+        for (int i=0; i<m-n+1; i++) {
+            int j;
+            for (j=0; j<n; j++) {
+                if (haystack.charAt(i+j) != needle.charAt(j)) {
+                    break;
+                }
+            }
+            if (j == n) {
+                return i;
+            }
+
+        }
+        return -1;
+    }
+
+
+    public int[] getNext(String needle) {
+        int[] next = new int[needle.length()];
+
+        return next;
+
+    }
+    public int strStr2(String haystack, String needle) {
+        //KMP解法
+        if (needle.equals("")) {
+            return 0;
+        }
+        return 1;
+
     }
 
 
@@ -34,8 +68,12 @@ public class Solution28 {
         String haystack2 = "aaaaa";
         String needle2 = "bba";
 
+        String haystack3 = "mississippi";
+        String needle3 = "issip";
         Solution28 s = new Solution28();
-        System.out.println(s.strStr(haystack1, needle1)); //2
-        System.out.println(s.strStr(haystack2, needle2)); //-1
+        System.out.println(s.strStr2(haystack1, needle1)); //2
+        System.out.println(s.strStr2(haystack2, needle2)); //-1
+        System.out.println(s.strStr2(haystack3, needle3)); //4
+
     }
 }
