@@ -32,12 +32,51 @@ public class Solution134 {
     因此，3 可为起始索引。
      */
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     public int canCompleteCircuit(int[] gas, int[] cost) {
-        int len = gas.length;
-        
+        int n = gas.length;
+        int[] sum = new int[n];
+
+        sum[0] = gas[0] - cost[0];
+        int min = 0;
+        for (int i=1; i<n; i++) {
+            sum[i] += sum[i-1] + gas[i] - cost[i];
+            if (sum[i] < sum[min]) {
+                min = i;
+            }
+        }
+        System.out.println(sum[n-1]);
+        return sum[n-1] >= 0? min+1:-1;
     }
 
     public static void main(String[] args) {
-
+        Solution134 s = new Solution134();
+        int[] gas  = {1,2,3,4,5};
+        int[] cost = {3,4,5,1,2};
+        System.out.println(s.canCompleteCircuit(gas,cost));
     }
 }
