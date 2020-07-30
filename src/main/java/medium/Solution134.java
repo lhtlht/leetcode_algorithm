@@ -35,28 +35,6 @@ public class Solution134 {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public int canCompleteCircuit(int[] gas, int[] cost) {
         int n = gas.length;
         int[] sum = new int[n];
@@ -69,14 +47,18 @@ public class Solution134 {
                 min = i;
             }
         }
-        System.out.println(sum[n-1]);
-        return sum[n-1] >= 0? min+1:-1;
+        return sum[n-1] >= 0? (min+1)%n:-1;
     }
 
     public static void main(String[] args) {
         Solution134 s = new Solution134();
         int[] gas  = {1,2,3,4,5};
         int[] cost = {3,4,5,1,2};
+
+        int[] gas1  = {3,1,1};
+        int[] cost1 = {1,2,2};
         System.out.println(s.canCompleteCircuit(gas,cost));
+        System.out.println(s.canCompleteCircuit(gas1,cost1));
+
     }
 }
