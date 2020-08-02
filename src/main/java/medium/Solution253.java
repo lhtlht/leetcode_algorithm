@@ -2,6 +2,7 @@ package medium;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.PriorityQueue;
 
 public class Solution253 {
     /*
@@ -23,29 +24,32 @@ public class Solution253 {
         if (intervals.length == 0) {
             return 0;
         }
+        //按开始时间排序
         Arrays.sort(intervals, new Comparator<int[]>() {
             public int compare(int[] o1, int[] o2) {
-                return o1[1]-o2[1];
+                return o1[0]-o2[0];
+            }
+        });
+        //最小堆
+        PriorityQueue<Integer> res = new PriorityQueue<Integer>(intervals.length, new Comparator<Integer>() {
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
             }
         });
 
-        int count = 1;
-
-
-
-        for (int i=0; i<intervals.length-1; i++) {
-            if (intervals[i][1] > intervals[i+1][0]) {
-                count++;
+        res.add(intervals[0][1]); // 把结束时间加入最小堆
+        for (int i=1; i<intervals.length; i++) {
+            if (intervals[i][0] >= res.peek()) {  //检查开始时间是够结束
+                res.poll();
             }
+            res.add(intervals[i][1]);
         }
-
-        return count;
-
+        return res.size();
     }
 
     public static void main(String[] args) {
         int[][] intervals = {{0, 30},{5, 10},{15, 20}};
         Solution253 s = new Solution253();
-        System.out.println(s.minMeetingRooms(intervals));
+        System.out.println(s.minMeetingRooms(intervals)); //2
     }
 }
