@@ -26,25 +26,33 @@ public class Solution12 {
     public boolean exist(char[][] board, String word) {
         int m = board.length;
         int n = board[0].length;
+        boolean[][] flag = new boolean[m][n];
         for (int i=0; i<m; i++) {
             for (int j=0; j<n; j++) {
-                if(dfs(board, i, j, word, 0)) return true;
+                if(dfs(board, m, n, flag, i, j, word, 0)) return true;
             }
         }
         return false;
     }
 
-    public boolean dfs(char[][] board, int i, int j, String word, int index) {
-        if (board[i][j] != word.charAt(index)) {
+    public boolean dfs(char[][] board, int m, int n, boolean[][] flag, int i, int j, String word, int index) {
+        if (i<0 || i>m-1 || j<0 || j>n-1 || flag[i][j] || board[i][j] != word.charAt(index)) {
             return false;
         }
-
-        return dfs(board, i+1, j, word, 0) || dfs(board, i, j+1, word, 0);
+        if (index == word.length()-1) {
+            return true;
+        }
+        flag[i][j] = true;
+        index++;
+        boolean res = dfs(board, m,n,flag, i+1, j, word, index) || dfs(board, m,n,flag, i-1, j, word, index) || dfs(board, m,n,flag, i, j-1, word, index) || dfs(board, m,n,flag, i, j+1, word, index);
+        flag[i][j] = false;
+        return res;
     }
 
     public static void main(String[] args) {
         Solution12 s = new Solution12();
         System.out.println(s.exist(new char[][] {{'a','b'}, {'c','d'}}, "abcd")); //fasle
         System.out.println(s.exist(new char[][] {{'A','B','C','E'}, {'S','F','C','S'}, {'A','D','E','E'}}, "ABCCED")); //true
+        System.out.println(s.exist(new char[][] {{'C','A','A'}, {'A','A','A'}, {'B','C','D'}}, "AAB")); //true
     }
 }
