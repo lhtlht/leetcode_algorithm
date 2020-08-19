@@ -24,12 +24,28 @@ public class Solution56_II {
      */
 
     public int singleNumber(int[] nums) {
-        int n = 1;
+        if (nums.length == 0) return -1;
+        int[] bitSum = new int[32];
+        for (int num : nums) {
+            int tmp = 1;
+            for (int i=31; i>=0; i--) {
+                if ((num&tmp) != 0) {
+                    bitSum[i]++;
+                }
+                tmp = tmp << 1;
+            }
+        }
+        int res = 0;
+        for (int i=0; i<32; i++) {
+            res = res << 1;
+            res += bitSum[i]%3;
+        }
 
-        return n;
+        return res;
     }
 
     public static void main(String[] args) {
-        
+        Solution56_II s = new Solution56_II();
+        System.out.println(s.singleNumber(new int[] {3,4,3,3}));
     }
 }
