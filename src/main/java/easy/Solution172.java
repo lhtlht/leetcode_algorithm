@@ -27,6 +27,15 @@ public class Solution172 {
         return count;
     }
 
+    public int trailingZeroes2(int n) {
+        int count = 0;
+        while (n > 0) {
+            count += n/5;
+            n /= 5;
+        }
+        return count;
+    }
+
 
     public static void main(String[] args) {
         Solution172 s = new Solution172();
