@@ -38,11 +38,14 @@ public class Solution93 {
     List<String> ans;
     public List<String> restoreIpAddresses(String s) {
         ans = new ArrayList<String>();
-        
+        StringBuffer tmp = new StringBuffer();
         char[] ss = s.toCharArray();
+        return ans;
     }
 
-    public void backtrack(String s)
+    public void backtrack(char[] s, StringBuffer tmp) {
+
+    }
 
     public static void main(String[] args) {
         Solution93 s = new Solution93();
