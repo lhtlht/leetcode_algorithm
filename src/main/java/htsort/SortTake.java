@@ -153,7 +153,7 @@ public class SortTake {
     public void quickSort(int[] nums, int leftIndex, int rightIndex) {
         /**
          * 时间复杂度平均 nlog2（n），最坏n^2，
-         * 空间复杂度nlog2（n）
+         * 空间复杂度log2（n）
          * 不稳定
          */
         if (leftIndex>=rightIndex) {

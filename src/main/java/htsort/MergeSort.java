@@ -31,7 +31,6 @@ public class MergeSort {
             }
             i++;
         }
-
         while (p1 <= mid) copy[i++] = nums[p1++];
         while (p2 <= end) copy[i++] = nums[p2++];
         for (int j=start; j<=end; j++) {
