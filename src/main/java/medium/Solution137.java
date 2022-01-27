@@ -19,11 +19,12 @@ public class Solution137 {
     输出: 99
      */
     public int singleNumber(int[] nums) {
-        int size = nums.length/3+1;
-        for (int i=0; i<nums.length; i++) {
-
+        int ones = 0, twos = 0;
+        for(int num : nums){
+            ones = ones ^ num & ~twos;
+            twos = twos ^ num & ~ones;
         }
-        return 0;
+        return ones;
     }
 
     public static void main(String[] args) {

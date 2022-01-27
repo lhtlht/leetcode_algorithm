@@ -28,7 +28,7 @@ public class Solution92 {
 
     //反转前n个节点
     ListNode succesor = null;
-    public ListNode reverseN(ListNode head, int n) {
+    public ListNode reverseN2(ListNode head, int n) {
         if (n == 1) {
             succesor =  head.next; //保存第n+1个节点
             return head; //返回需要反转的最后一个节点
@@ -37,5 +37,20 @@ public class Solution92 {
         head.next.next = head;
         head.next = succesor;
         return last;
+    }
+
+
+    public ListNode reverseN(ListNode head, int n) {
+        ListNode pre = null;
+        ListNode curr = head;
+        while (n >= 0) {
+            ListNode next = head.next;
+            head.next = pre;
+            pre = head;
+            head = next;
+            n--;
+        }
+        curr.next = head;
+        return pre;
     }
 }

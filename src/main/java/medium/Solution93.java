@@ -35,15 +35,49 @@ public class Solution93 {
     输入：s = "101023"
     输出：["1.0.10.23","1.0.102.3","10.1.0.23","10.10.2.3","101.0.2.3"]
      */
-    List<String> ans;
+    int segs = 4;
+    List<String> ans = new ArrayList<String>();
+    int[] seg = new int[segs];
+
     public List<String> restoreIpAddresses(String s) {
-        ans = new ArrayList<String>();
-        StringBuffer tmp = new StringBuffer();
-        char[] ss = s.toCharArray();
+        backtrack(s, 0, 0);
         return ans;
     }
 
-    public void backtrack(char[] s, StringBuffer tmp) {
+    public void backtrack(String s, int segId, int segStart) {
+        if (segId == 4) {
+            if (segStart == s.length()) { //符合条件
+                StringBuffer ip = new StringBuffer();
+                for (int i=0; i<4; i++) {
+                    ip.append(seg[i]);
+                    if (i != 3) {
+                        ip.append(".");
+                    }
+                }
+                ans.add(ip.toString());
+            }
+            return;
+        }
+
+        if (segStart == s.length()) {
+            return;
+        }
+
+        if (s.charAt(segStart) == '0') {
+            seg[segId] = 0;
+            backtrack(s, segId+1, segStart+1);
+        }
+
+        int curr = 0;
+        for (int i=segStart; i<s.length(); i++) {
+            curr = curr * 10 + (s.charAt(i)-'0');
+            if (curr > 0 && curr <= 255) {
+                seg[segId] = curr;
+                backtrack(s, segId+1, i+1);
+            } else {
+                break;
+            }
+        }
 
     }
 
